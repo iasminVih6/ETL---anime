@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__) #cria um logger especifico para esse arquiv
 
 ANIME_ID = 40748 #id demon slayer
 
-BASE_URL = f"https://api.jikan.moe/v4/anime/{ANIME_ID}/characteres" #o f no começo é oara criar um s string e a variavel anime_id e substituida pelo valor da variavel
+BASE_URL = f"https://api.jikan.moe/v4/anime/{ANIME_ID}/characters" #o f no começo é oara criar um s string e a variavel anime_id e substituida pelo valor da variavel
 
 OUTPUT_DIR = Path("data/raw") #define a pasta onde o json bruto vai ser salvo
 
@@ -36,7 +36,7 @@ def buscar_personagens(url: str, tentativas: int = 3) -> dict: #-> dict indica q
     fazer aquisição para a API, com retry siples em caso de erro (a jikan tem rate de limit e pode responder 429 - too many requests)
     """
     for tentativas in range(1, tentativas + 1): #1, tentativas + 1 gera os numeros 1,2,3 ( se tentativas = 3)
-        logger.info(f"tentativa {tentativa} de {tentativa} - GET {url}") #registra no log qual tentativa está fazendo
+        logger.info(f"tentativa {tentativas} de {tentativas} - GET {url}") #registra no log qual tentativa está fazendo
 
         try:
             resposta = requests.get(url, timeout=10) #faz aquisição GET (buscar dados na web), timeout de 10 segs -- se API n responder nesse tempo, desiste e gera um erro
@@ -57,7 +57,7 @@ def buscar_personagens(url: str, tentativas: int = 3) -> dict: #-> dict indica q
 
         except requests.exceptions.RequestException as e:
 
-            logger.erro(f"Falha na requisição: {e}") #variavel "e" guarda o erro
+            logger.error(f"Falha na requisição: {e}") #variavel "e" guarda o erro
             time.sleep(2) #2 segundos antes de teentar dnv
 
 
@@ -91,8 +91,7 @@ def main():
     #se a chave n existir ela usa uma lista vazia [] como padrao
     #len conta quantos itens tem nessa lista
 
-    logger.info(f"Total de personagens extraidos" {quantidade}) #loga quantos personagens vieram na resposta
-
+    logger.info(f"Total de personagens extraidos: {quantidade}") #loga quantos personagens vieram na resposta
     salvar_bruto(dados, OUTPUT_FILE) #chama a função 2, passando os dados e o caminho de onde salvar
 
 
