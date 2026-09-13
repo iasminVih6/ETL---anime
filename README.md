@@ -1,6 +1,6 @@
 # ETL - Personagens de Anime (Jikan API)
 
-Pipeline de ETL (Extract, Transform, Load) em Python que busca dados de personagens de anime na [Jikan API](https://jikan.moe) (API não-oficial do MyAnimeList), trata esses dados e carrega num banco SQLite.
+Pipeline de ETL (Extract, Transform, Load) em Python que busca dados de personagens de anime na [Jikan API](https://jikan.moe) 
 
 Projeto criado com o apoio do claude, sendo um exercício de aprendizado de conceitos de ETL, consumo de APIs REST, tratamento de dados e persistência em banco de dados.
 
@@ -22,7 +22,7 @@ API Jikan  →  extract.py  →  JSON bruto  →  transform.py  →  JSON tratad
 ## Instalação
 
 ```bash
-git clone <url-do-seu-repositorio>
+git clone <url-do-meu-repositorio>
 cd ETL---anime
 pip install -r requirements.txt
 ```
@@ -69,22 +69,12 @@ https://myanimelist.net/anime/38000/Kimetsu_no_Yaiba
 | `requirements.txt` | Dependências do projeto |
 | `data/` | Pasta gerada automaticamente com os dados em cada etapa (não versionar no git) |
 
-Para uma explicação técnica mais detalhada de cada etapa e das decisões de projeto, veja [DOCUMENTACAO.md](DOCUMENTACAO.md).
-
 ## Problema conhecido: erro 504 na Jikan API
 
-O endpoint `/anime/{id}/characters` da Jikan API pode retornar erro 504 (`Gateway Time-out`) de forma intermitente. Isso acontece quando o servidor da Jikan não consegue se conectar ao MyAnimeList para buscar os dados — é um problema do lado deles, não do código deste projeto. Se isso acontecer, espere alguns minutos e tente rodar `extract.py` novamente. Mais detalhes em [DOCUMENTACAO.md](DOCUMENTACAO.md#troubleshooting).
-
+O endpoint `/anime/{id}/characters` da Jikan API pode retornar erro 504 (`Gateway Time-out`) de forma intermitente. Isso acontece quando o servidor da Jikan não consegue se conectar ao MyAnimeList para buscar os dados — é um problema do lado deles, não do código deste projeto. Se isso acontecer, espere alguns minutos e tente rodar `extract.py` novamente. 
 ## Tecnologias usadas
 
 - Python 3
 - [requests](https://docs.python-requests.org/) — chamadas HTTP
 - `sqlite3` (biblioteca padrão) — banco de dados
 - `json`, `logging`, `pathlib` (biblioteca padrão)
-
-## Próximos passos (ideias de evolução)
-
-- [ ] Unificar os três scripts num `main.py` que roda o pipeline completo
-- [ ] Adicionar testes automatizados (pytest) para a função de transformação
-- [ ] Expor os dados carregados através de uma API própria (FastAPI/Flask)
-- [ ] Agendar a execução periódica do pipeline
