@@ -1,0 +1,5 @@
+pip install -r requirements.txt
+
+python extract.py
+python transform.py
+python load.py

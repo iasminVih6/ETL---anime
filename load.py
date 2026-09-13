@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 # --- CONFIGURAÇÕES DO PIPELINE ---
 
-ANIME_ID = 40748
+ANIME_ID = 38000 #naruto shippuden
 
 INPUT_FILE = Path("data/processed") / f"personagens_{ANIME_ID}_tratado.json"
 # ^ de onde vamos LER (a saída do transform.py)

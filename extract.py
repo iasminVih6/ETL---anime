@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__) #cria um logger especifico para esse arquiv
 
 #CONFIG DO PIPELINE
 
-ANIME_ID = 40748 #id demon slayer
+ANIME_ID = 38000 #naruto classico
 
 BASE_URL = f"https://api.jikan.moe/v4/anime/{ANIME_ID}/characters" #o f no começo é oara criar um s string e a variavel anime_id e substituida pelo valor da variavel
 
@@ -43,7 +43,7 @@ def buscar_personagens(url: str, tentativas: int = 3) -> dict: #-> dict indica q
 
             if resposta.status_code == 200: #status 200 = OK, sem erros
                logger.info("Requisição bem sucedida")
-               return resposta.json #retun para encerrar a fuunção e o .json que converte o texto da resposta em dicionario python
+               return resposta.json() #retun para encerrar a fuunção e o .json que converte o texto da resposta em dicionario python
 
             elif resposta.status_code == 429: #status too many requests (limite do range)
                  espera = 3 * tentativas #calcula o quanto tempo espera em cada tentativa
