@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__) #cria um logger especifico para esse arquiv
 
 #CONFIG DO PIPELINE
 
-ANIME_ID = 38000 #naruto classico
+ANIME_ID = 38000 #demon slayer temp 1
 
 BASE_URL = f"https://api.jikan.moe/v4/anime/{ANIME_ID}/characters" #o f no começo é oara criar um s string e a variavel anime_id e substituida pelo valor da variavel
 
